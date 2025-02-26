@@ -34,9 +34,9 @@ export class RouteRequestParamsDTO {
 
 @Service()
 @OpenAPI({
-    tags: ["meta"],
+    tags: ["{{kebabcase}}"],
 })
-@JsonController("meta")
+@JsonController("{{kebabcase}}")
 export class MetaController {
     meta: MetaProvider;
     constructor() {
