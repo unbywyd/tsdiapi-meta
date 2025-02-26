@@ -27,7 +27,7 @@ import { createApp } from "@tsdiapi/server";
 import createPlugin from "@tsdiapi/meta";
 
 createApp({
-    plugins: [createPlugin()]
+  plugins: [createPlugin()],
 });
 ```
 
@@ -50,7 +50,6 @@ The plugin does not require additional configuration. Simply install and use it!
 ```typescript
 createPlugin();
 ```
-
 
 ## 📌 How to Use
 
@@ -76,28 +75,26 @@ The plugin also provides a built-in **MetaController** that exposes various endp
 
 Here is the table in Markdown format:
 
-```markdown
 # API Endpoints for MetaController
 
-| HTTP Method | Endpoint               | Description |
-|------------|------------------------|-------------|
-| GET        | `/api-spec`             | Retrieves the full OpenAPI specification of the API. |
-| GET        | `/api-source-spec`      | Retrieves the raw OpenAPI specification before processing. |
-| GET        | `/route-types`          | Gets all input and output types for a specified route. |
-| GET        | `/route-types/input`    | Gets the input type schema for a specified route. |
-| GET        | `/route-types/output`   | Gets the output type schema for a specified route. |
-| GET        | `/routes`               | Retrieves all registered API routes. |
-| GET        | `/controllers`          | Retrieves all registered controllers and their routes. |
-| GET        | `/route`                | Retrieves metadata for a specified route. |
-| GET        | `/route-source`         | Retrieves raw metadata for a specified route. |
-| GET        | `/schema/:name`         | Retrieves the schema definition for a specified DTO. |
-| GET        | `/dtos`                 | Lists all available DTOs. |
-| GET        | `/schemas`              | Retrieves all registered schemas. |
-| GET        | `/source-schema`        | Retrieves the raw JSON schema definitions. |
-| GET        | `/fields/:name`         | Retrieves form fields extracted from a specified schema. |
-| GET        | `/response-fields`      | Retrieves response field definitions for a specified route. |
-| GET        | `/request-fields`       | Retrieves request field definitions for a specified route. |
-```
+| HTTP Method | Endpoint              | Description                                                 |
+| ----------- | --------------------- | ----------------------------------------------------------- |
+| GET         | `/api-spec`           | Retrieves the full OpenAPI specification of the API.        |
+| GET         | `/api-source-spec`    | Retrieves the raw OpenAPI specification before processing.  |
+| GET         | `/route-types`        | Gets all input and output types for a specified route.      |
+| GET         | `/route-types/input`  | Gets the input type schema for a specified route.           |
+| GET         | `/route-types/output` | Gets the output type schema for a specified route.          |
+| GET         | `/routes`             | Retrieves all registered API routes.                        |
+| GET         | `/controllers`        | Retrieves all registered controllers and their routes.      |
+| GET         | `/route`              | Retrieves metadata for a specified route.                   |
+| GET         | `/route-source`       | Retrieves raw metadata for a specified route.               |
+| GET         | `/schema/:name`       | Retrieves the schema definition for a specified DTO.        |
+| GET         | `/dtos`               | Lists all available DTOs.                                   |
+| GET         | `/schemas`            | Retrieves all registered schemas.                           |
+| GET         | `/source-schema`      | Retrieves the raw JSON schema definitions.                  |
+| GET         | `/fields/:name`       | Retrieves form fields extracted from a specified schema.    |
+| GET         | `/response-fields`    | Retrieves response field definitions for a specified route. |
+| GET         | `/request-fields`     | Retrieves request field definitions for a specified route.  |
 
 ---
 
@@ -111,11 +108,9 @@ tsdiapi generate meta
 
 This command will create a new controller in your project.
 
-
 ✅ **After generating the controller, you can immediately use it in your API!**
 
 ---
-
 
 ## 👨‍💻 Contributing
 
@@ -125,4 +120,3 @@ Contributions are welcome! If you have ideas for improvements, feel free to open
 📧 **Contact:** unbywyd@gmail.com
 
 🚀 Happy coding with **TSDIAPI**! 🎉
-
