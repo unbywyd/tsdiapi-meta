@@ -1,0 +1,24 @@
+{
+  "name": "tsdiapi-meta",
+  "description": "A TSDIAPI plugin for automatic OpenAPI metadata generation, schema validation, and extended route information extraction.",
+  "generators": [
+    {
+      "name": "controller",
+      "description": "Generate a new controller in the API",
+      "files": [
+        {
+          "source": "generators/controller/*.*",
+          "destination": ".",
+          "overwrite": false,
+          "isHandlebarsTemplate": true
+        }
+      ],
+      "postMessages": [
+        "✅ Controller {{name}} created successfully!"
+      ]
+    }
+  ],
+  "postMessages": [
+    "ℹ️ This plugin does not require configuration. Simply generate a controller using the generator and use it!"
+  ]
+}
