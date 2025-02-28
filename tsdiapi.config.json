@@ -18,7 +18,21 @@
       ]
     }
   ],
+  "variables": [
+    {
+      "key": "META_AUTO_REGISTER_CONTROLLERS",
+      "type": "boolean",
+      "default": true,
+      "configurable": true,
+      "description": "Automatically register controllers in the meta system",
+      "inquirer": {
+        "type": "confirm",
+        "message": "Do you want to enable automatic controller registration?",
+        "default": true
+      }
+    }
+  ],
   "postMessages": [
-    "ℹ️ This plugin does not require configuration. Simply generate a controller using the generator and use it!"
+    "✅ Plugin Meta has been successfully installed!"
   ]
 }

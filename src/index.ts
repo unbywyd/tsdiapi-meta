@@ -1,16 +1,23 @@
 import "reflect-metadata";
 import type { AppContext, AppPlugin } from "@tsdiapi/server";
 import { MetaProvider } from "./provider";
+import path from "path";
 export * from "./provider";
 
 let metaProvider: MetaProvider | null = null;
 
+export type PluginOptions = {
+    autoRegisterControllers?: boolean;
+}
+
 export class MetaPlugin implements AppPlugin {
-    name = "tsdiapi-meta";
+    name = "@tsdiapi/meta";
     context: AppContext;
     provider: MetaProvider;
-
-    constructor() {
+    config: PluginOptions;
+    globControllersPath: string | null = null;
+    constructor(config?: PluginOptions) {
+        this.config = { ...config };
         this.provider = new MetaProvider();
     }
 
@@ -19,8 +26,12 @@ export class MetaPlugin implements AppPlugin {
             ctx.logger.warn("🚨 META Plugin is already initialized. Skipping re-initialization.");
             return;
         }
-
         this.context = ctx;
+        const appConfig = this.context.config.appConfig || {};
+        this.config.autoRegisterControllers = appConfig?.autoRegisterControllers || appConfig['META_AUTO_REGISTER_CONTROLLERS'] || this.config.autoRegisterControllers;
+        if (this.config.autoRegisterControllers) {
+            this.globControllersPath = path.join(__dirname, '../') + path.normalize("output/controllers/**/*.controller{.ts,.js}");
+        }
         try {
             this.provider.init(ctx);
             metaProvider = this.provider;
@@ -41,6 +52,6 @@ export function getMetaProvider(): MetaProvider {
 
 export { MetaProvider };
 
-export default function createPlugin() {
-    return new MetaPlugin();
+export default function createPlugin(config?: PluginOptions): MetaPlugin {
+    return new MetaPlugin(config);
 }
