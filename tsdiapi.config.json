@@ -20,7 +20,7 @@
   ],
   "variables": [
     {
-      "key": "META_AUTO_REGISTER_CONTROLLERS",
+      "name": "META_AUTO_REGISTER_CONTROLLERS",
       "type": "boolean",
       "default": true,
       "configurable": true,

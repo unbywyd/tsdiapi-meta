@@ -1,7 +1,7 @@
 {
   "name": "@tsdiapi/meta",
   "description": "A TSDIAPI plugin to extend API functionality with meta.",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.5",
   "main": "output/index.js",
   "types": "output/index.d.ts",
   "scripts": {
