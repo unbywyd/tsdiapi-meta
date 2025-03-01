@@ -1,7 +1,7 @@
 {
   "name": "@tsdiapi/meta",
   "description": "A TSDIAPI plugin to extend API functionality with meta.",
-  "version": "0.0.1-alpha.5",
+  "version": "0.0.1-alpha.6",
   "main": "output/index.js",
   "types": "output/index.d.ts",
   "scripts": {
@@ -34,13 +34,14 @@
   "dependencies": {
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
-    "routing-controllers": "^0.10.4",
-    "routing-controllers-openapi": "^4.1.0",
     "class-validator-jsonschema": "^5.0.1",
-    "openapi3-ts": "^4.4.0"
+    "openapi3-ts": "^4.4.0",
+    "prisma-class-dto-generator": "^6.5.1",
+    "routing-controllers": "^0.10.4",
+    "routing-controllers-openapi": "^4.1.0"
   },
   "devDependencies": {
-    "@tsdiapi/server": "^0.0.1-alpha.7",
+    "@tsdiapi/server": "^0.0.1-alpha.23",
     "@types/node": "^22.13.5",
     "typescript": "^5.7.3"
   },

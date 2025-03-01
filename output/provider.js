@@ -16,7 +16,7 @@ const class_transformer_1 = require("class-transformer");
 const routing_controllers_openapi_1 = require("routing-controllers-openapi");
 const routing_controllers_1 = require("routing-controllers");
 const class_validator_1 = require("class-validator");
-const routing_controllers_openapi_extra_1 = require("routing-controllers-openapi-extra");
+const prisma_class_dto_generator_1 = require("prisma-class-dto-generator");
 class SchemaDTO {
     title;
     description;
@@ -178,7 +178,7 @@ __decorate([
 __decorate([
     (0, class_transformer_1.Expose)(),
     (0, class_validator_1.IsOptional)(),
-    (0, routing_controllers_openapi_extra_1.IsEntity)(() => FormFieldDTO, { each: true }),
+    (0, prisma_class_dto_generator_1.IsEntity)(() => FormFieldDTO, { each: true }),
     __metadata("design:type", Array)
 ], FormFieldDTO.prototype, "children", void 0);
 class FormFieldsDTO {
@@ -193,7 +193,7 @@ __decorate([
 ], FormFieldsDTO.prototype, "type", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
-    (0, routing_controllers_openapi_extra_1.IsEntity)(() => FormFieldDTO, { each: true }),
+    (0, prisma_class_dto_generator_1.IsEntity)(() => FormFieldDTO, { each: true }),
     __metadata("design:type", Array)
 ], FormFieldsDTO.prototype, "fields", void 0);
 class ExtraRouteDTO {
@@ -223,7 +223,7 @@ __decorate([
 ], ControllersDTO.prototype, "name", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
-    (0, routing_controllers_openapi_extra_1.IsEntity)(() => ExtraRouteDTO, { each: true }),
+    (0, prisma_class_dto_generator_1.IsEntity)(() => ExtraRouteDTO, { each: true }),
     __metadata("design:type", Array)
 ], ControllersDTO.prototype, "routes", void 0);
 class ItemSchemaDTO {
@@ -238,7 +238,7 @@ __decorate([
 ], ItemSchemaDTO.prototype, "name", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
-    (0, routing_controllers_openapi_extra_1.IsEntity)(() => SchemaDTO),
+    (0, prisma_class_dto_generator_1.IsEntity)(() => SchemaDTO),
     __metadata("design:type", SchemaDTO)
 ], ItemSchemaDTO.prototype, "schema", void 0);
 class RouteMetadataDTO {
@@ -383,7 +383,7 @@ __decorate([
 ], RouterTypeReferenceDTO.prototype, "model", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
-    (0, routing_controllers_openapi_extra_1.IsEntity)(() => FormFieldsDTO),
+    (0, prisma_class_dto_generator_1.IsEntity)(() => FormFieldsDTO),
     __metadata("design:type", FormFieldsDTO)
 ], RouterTypeReferenceDTO.prototype, "fields", void 0);
 function expandSchema(schema, definitions) {

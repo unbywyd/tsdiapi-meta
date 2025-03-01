@@ -17,7 +17,7 @@ const index_1 = require("../index");
 const routing_controllers_1 = require("routing-controllers");
 const typedi_1 = require("typedi");
 const routing_controllers_openapi_1 = require("routing-controllers-openapi");
-const routing_controllers_openapi_extra_1 = require("routing-controllers-openapi-extra");
+const server_1 = require("@tsdiapi/server");
 const class_validator_1 = require("class-validator");
 const class_transformer_1 = require("class-transformer");
 class ListStringsDTO {
@@ -123,137 +123,137 @@ let MetaController = class MetaController {
 };
 exports.MetaController = MetaController;
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get API spec"),
+    (0, server_1.Summary)("Get API spec"),
     (0, routing_controllers_1.Get)("/api-spec"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(SourceObjectDTO),
+    (0, server_1.SuccessResponse)(SourceObjectDTO),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getApiSpec", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get API source spec"),
+    (0, server_1.Summary)("Get API source spec"),
     (0, routing_controllers_1.Get)("/api-source-spec"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(SourceObjectDTO),
+    (0, server_1.SuccessResponse)(SourceObjectDTO),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getApiSourceSpec", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get all types from route"),
+    (0, server_1.Summary)("Get all types from route"),
     (0, routing_controllers_1.Get)("/route-types"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.RouterTypeReferenceDTO, { isArray: true }),
+    (0, server_1.SuccessResponse)(index_1.RouterTypeReferenceDTO, { isArray: true }),
     __param(0, (0, routing_controllers_1.QueryParams)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [RouteRequestParamsDTO]),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getAllTypesFromRoute", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get input types from route"),
+    (0, server_1.Summary)("Get input types from route"),
     (0, routing_controllers_1.Get)("/route-types/input"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.RouterTypeReferenceDTO),
+    (0, server_1.SuccessResponse)(index_1.RouterTypeReferenceDTO),
     __param(0, (0, routing_controllers_1.QueryParams)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [RouteRequestParamsDTO]),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getInputTypesFromRoute", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get output types from route"),
+    (0, server_1.Summary)("Get output types from route"),
     (0, routing_controllers_1.Get)("/route-types/output"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.RouterTypeReferenceDTO, { isArray: true }),
+    (0, server_1.SuccessResponse)(index_1.RouterTypeReferenceDTO, { isArray: true }),
     __param(0, (0, routing_controllers_1.QueryParams)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [RouteRequestParamsDTO]),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getOutputTypesFromRoute", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get all available routes"),
+    (0, server_1.Summary)("Get all available routes"),
     (0, routing_controllers_1.Get)("/routes"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.RouteMetadataDTO, { isArray: true }),
+    (0, server_1.SuccessResponse)(index_1.RouteMetadataDTO, { isArray: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getAllRoutes", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get all controllers"),
+    (0, server_1.Summary)("Get all controllers"),
     (0, routing_controllers_1.Get)("/controllers"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.ControllersDTO, { isArray: true }),
+    (0, server_1.SuccessResponse)(index_1.ControllersDTO, { isArray: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getControllers", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get route metadata"),
+    (0, server_1.Summary)("Get route metadata"),
     (0, routing_controllers_1.Get)("/route"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.RouteMetadataDTO),
+    (0, server_1.SuccessResponse)(index_1.RouteMetadataDTO),
     __param(0, (0, routing_controllers_1.QueryParams)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [RouteRequestParamsDTO]),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getRoute", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get route metadata"),
+    (0, server_1.Summary)("Get route metadata"),
     (0, routing_controllers_1.Get)("/route-source"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.SchemaDTO),
+    (0, server_1.SuccessResponse)(index_1.SchemaDTO),
     __param(0, (0, routing_controllers_1.QueryParams)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [RouteRequestParamsDTO]),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getRouteSource", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get schema by name"),
+    (0, server_1.Summary)("Get schema by name"),
     (0, routing_controllers_1.Get)("/schema/:name"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.SchemaDTO),
+    (0, server_1.SuccessResponse)(index_1.SchemaDTO),
     __param(0, (0, routing_controllers_1.Param)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getSchemaByName", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("List available DTOs"),
+    (0, server_1.Summary)("List available DTOs"),
     (0, routing_controllers_1.Get)("/dtos"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(ListStringsDTO),
+    (0, server_1.SuccessResponse)(ListStringsDTO),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "listAvailableDTOs", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get all schemas"),
+    (0, server_1.Summary)("Get all schemas"),
     (0, routing_controllers_1.Get)("/schemas"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.ItemSchemaDTO, { isArray: true }),
+    (0, server_1.SuccessResponse)(index_1.ItemSchemaDTO, { isArray: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getAllSchemas", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get source schema"),
+    (0, server_1.Summary)("Get source schema"),
     (0, routing_controllers_1.Get)("/source-schema"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(SourceObjectDTO),
+    (0, server_1.SuccessResponse)(SourceObjectDTO),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getSourceSchema", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get form fields by schema name"),
+    (0, server_1.Summary)("Get form fields by schema name"),
     (0, routing_controllers_1.Get)("/fields/:name"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.FormFieldDTO, { isArray: true }),
+    (0, server_1.SuccessResponse)(index_1.FormFieldDTO, { isArray: true }),
     __param(0, (0, routing_controllers_1.Param)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getFormFields", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get response fields for a route"),
+    (0, server_1.Summary)("Get response fields for a route"),
     (0, routing_controllers_1.Get)("/response-fields"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.FormFieldsDTO),
+    (0, server_1.SuccessResponse)(index_1.FormFieldsDTO),
     __param(0, (0, routing_controllers_1.QueryParams)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [RouteRequestParamsDTO]),
     __metadata("design:returntype", Promise)
 ], MetaController.prototype, "getResponseRouterFields", null);
 __decorate([
-    (0, routing_controllers_openapi_extra_1.Summary)("Get request fields for a route"),
+    (0, server_1.Summary)("Get request fields for a route"),
     (0, routing_controllers_1.Get)("/request-fields"),
-    (0, routing_controllers_openapi_extra_1.SuccessResponse)(index_1.FormFieldsDTO),
+    (0, server_1.SuccessResponse)(index_1.FormFieldsDTO),
     __param(0, (0, routing_controllers_1.QueryParams)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [RouteRequestParamsDTO]),

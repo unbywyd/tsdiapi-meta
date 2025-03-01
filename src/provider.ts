@@ -5,7 +5,7 @@ import { routingControllersToSpec } from "routing-controllers-openapi";
 import { getMetadataArgsStorage } from "routing-controllers";
 import { IsArray, IsBoolean, IsNumber, IsObject, IsOptional, IsString, ValidateNested } from "class-validator";
 import { OpenAPIObject, PathItemObject, ReferenceObject, RequestBodyObject, SchemaObject } from "openapi3-ts/dist/oas30";
-import { IsEntity } from "routing-controllers-openapi-extra";
+import { IsEntity } from "prisma-class-dto-generator";
 import { OperationObject } from "openapi3-ts/dist/oas31";
 
 export type FormField = {

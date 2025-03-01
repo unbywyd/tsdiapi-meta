@@ -8,7 +8,7 @@ import {
 } from "routing-controllers";
 import { Service } from "typedi";
 import { OpenAPI } from "routing-controllers-openapi";
-import { SuccessResponse, Summary } from 'routing-controllers-openapi-extra';
+import { SuccessResponse, Summary } from '@tsdiapi/server';
 import { IsObject, IsOptional, IsString } from "class-validator";
 import { Expose } from "class-transformer";
 
