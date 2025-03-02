@@ -1,7 +1,7 @@
 {
   "name": "@tsdiapi/meta",
   "description": "A TSDIAPI plugin to extend API functionality with meta.",
-  "version": "0.0.1-alpha.7",
+  "version": "0.0.1-alpha.8",
   "main": "output/index.js",
   "types": "output/index.d.ts",
   "scripts": {
@@ -40,7 +40,7 @@
     "routing-controllers-openapi": "^4.1.0"
   },
   "devDependencies": {
-    "@tsdiapi/server": "^0.0.1-alpha.26",
+    "@tsdiapi/server": "^0.0.1-alpha",
     "@types/node": "^22.13.5",
     "typescript": "^5.7.3"
   },
