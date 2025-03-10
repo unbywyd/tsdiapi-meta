@@ -1,6 +1,6 @@
 import { AppContext } from "@tsdiapi/server";
-import { OpenAPIObject, PathItemObject, ReferenceObject, SchemaObject } from "openapi3-ts/dist/oas30";
-import { OperationObject } from "openapi3-ts/dist/oas31";
+import { OpenAPIObject, PathItemObject, ReferenceObject, SchemaObject } from "openapi3-ts/oas31";
+import { OperationObject } from "openapi3-ts/oas31";
 export type FormField = {
     format?: string;
     name: string;

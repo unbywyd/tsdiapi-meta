@@ -1,9 +1,12 @@
-import "reflect-metadata";
-import type { AppContext, AppPlugin } from "@tsdiapi/server";
-import { MetaProvider } from "./provider";
 import path from "path";
-export * from "./provider";
+import type { AppContext, AppPlugin } from "@tsdiapi/server";
+import { MetaProvider } from "./provider.js";
+export * from "./provider.js";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 let metaProvider: MetaProvider | null = null;
 
 export type PluginOptions = {

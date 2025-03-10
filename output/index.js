@@ -1,32 +1,12 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MetaProvider = exports.MetaPlugin = void 0;
-exports.getMetaProvider = getMetaProvider;
-exports.default = createPlugin;
-require("reflect-metadata");
-const provider_1 = require("./provider");
-Object.defineProperty(exports, "MetaProvider", { enumerable: true, get: function () { return provider_1.MetaProvider; } });
-const path_1 = __importDefault(require("path"));
-__exportStar(require("./provider"), exports);
+import path from "path";
+import { MetaProvider } from "./provider.js";
+export * from "./provider.js";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 let metaProvider = null;
-class MetaPlugin {
+export class MetaPlugin {
     name = "@tsdiapi/meta";
     context;
     provider;
@@ -34,7 +14,7 @@ class MetaPlugin {
     globControllersPath = null;
     constructor(config) {
         this.config = { ...config };
-        this.provider = new provider_1.MetaProvider();
+        this.provider = new MetaProvider();
     }
     async onInit(ctx) {
         if (metaProvider) {
@@ -45,7 +25,7 @@ class MetaPlugin {
         const appConfig = this.context.config.appConfig || {};
         this.config.autoRegisterControllers = appConfig?.autoRegisterControllers || appConfig['META_AUTO_REGISTER_CONTROLLERS'] || this.config.autoRegisterControllers;
         if (this.config.autoRegisterControllers) {
-            this.globControllersPath = path_1.default.join(__dirname, '../') + path_1.default.normalize("output/controllers/**/*.controller{.ts,.js}");
+            this.globControllersPath = path.join(__dirname, '../') + path.normalize("output/controllers/**/*.controller{.ts,.js}");
         }
         try {
             this.provider.init(ctx);
@@ -57,14 +37,14 @@ class MetaPlugin {
         }
     }
 }
-exports.MetaPlugin = MetaPlugin;
-function getMetaProvider() {
+export function getMetaProvider() {
     if (!metaProvider) {
         throw new Error("❌ META Plugin is not initialized. Use createPlugin() first.");
     }
     return metaProvider;
 }
-function createPlugin(config) {
+export { MetaProvider };
+export default function createPlugin(config) {
     return new MetaPlugin(config);
 }
 //# sourceMappingURL=index.js.map

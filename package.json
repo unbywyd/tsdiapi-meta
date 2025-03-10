@@ -1,8 +1,9 @@
 {
   "name": "@tsdiapi/meta",
   "description": "A TSDIAPI plugin to extend API functionality with meta.",
-  "version": "0.0.1-alpha.8",
+  "version": "0.0.2-alpha.1",
   "main": "output/index.js",
+  "type": "module",
   "types": "output/index.d.ts",
   "scripts": {
     "build": "tsc"
@@ -32,20 +33,20 @@
   },
   "homepage": "https://github.com/unbywyd/tsdiapi-meta",
   "dependencies": {
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.1",
-    "class-validator-jsonschema": "^5.0.1",
-    "openapi3-ts": "^4.4.0",
-    "routing-controllers": "^0.10.4",
-    "routing-controllers-openapi": "^4.1.0"
+    "openapi3-ts": "^4.4.0"
   },
   "devDependencies": {
-    "@tsdiapi/server": "^0.0.1-alpha",
+    "@tsdiapi/server": "^0.0.2-alpha",
     "@types/node": "^22.13.5",
     "typescript": "^5.7.3"
   },
   "peerDependencies": {
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "class-validator-jsonschema": "^5.0.1",
     "reflect-metadata": "^0.2.2",
+    "routing-controllers": "^0.11.0",
+    "routing-controllers-openapi": "^5.0.0",
     "typedi": "^0.10.0"
   }
 }

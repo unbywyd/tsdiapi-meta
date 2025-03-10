@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,16 +7,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MetaProvider = exports.RouterTypeReferenceDTO = exports.RouteMetadataDTO = exports.ItemSchemaDTO = exports.ControllersDTO = exports.ExtraRouteDTO = exports.FormFieldsDTO = exports.FormFieldDTO = exports.SchemaDTO = void 0;
-exports.expandSchema = expandSchema;
-const class_validator_jsonschema_1 = require("class-validator-jsonschema");
-const class_transformer_1 = require("class-transformer");
-const routing_controllers_openapi_1 = require("routing-controllers-openapi");
-const routing_controllers_1 = require("routing-controllers");
-const class_validator_1 = require("class-validator");
-const server_1 = require("@tsdiapi/server");
-class SchemaDTO {
+import { validationMetadatasToSchemas } from "class-validator-jsonschema";
+import { Expose, plainToInstance } from "class-transformer";
+import { routingControllersToSpec } from "routing-controllers-openapi";
+import { getMetadataArgsStorage } from "routing-controllers";
+import { IsArray, IsBoolean, IsNumber, IsObject, IsOptional, IsString } from "class-validator";
+import { IsEntity } from "@tsdiapi/server";
+export class SchemaDTO {
     title;
     description;
     format;
@@ -37,211 +33,205 @@ class SchemaDTO {
     properties;
     additionalProperties;
 }
-exports.SchemaDTO = SchemaDTO;
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsOptional(),
+    IsString(),
     __metadata("design:type", String)
 ], SchemaDTO.prototype, "title", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsOptional(),
+    IsString(),
     __metadata("design:type", String)
 ], SchemaDTO.prototype, "description", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsOptional(),
+    IsString(),
     __metadata("design:type", String)
 ], SchemaDTO.prototype, "format", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsOptional(),
+    IsString(),
     __metadata("design:type", String)
 ], SchemaDTO.prototype, "type", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsBoolean)(),
+    Expose(),
+    IsOptional(),
+    IsBoolean(),
     __metadata("design:type", Boolean)
 ], SchemaDTO.prototype, "nullable", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsBoolean)(),
+    Expose(),
+    IsOptional(),
+    IsBoolean(),
     __metadata("design:type", Boolean)
 ], SchemaDTO.prototype, "readOnly", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsBoolean)(),
+    Expose(),
+    IsOptional(),
+    IsBoolean(),
     __metadata("design:type", Boolean)
 ], SchemaDTO.prototype, "writeOnly", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsBoolean)(),
+    Expose(),
+    IsOptional(),
+    IsBoolean(),
     __metadata("design:type", Boolean)
 ], SchemaDTO.prototype, "deprecated", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsNumber)(),
+    Expose(),
+    IsOptional(),
+    IsNumber(),
     __metadata("design:type", Number)
 ], SchemaDTO.prototype, "maxLength", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsNumber)(),
+    Expose(),
+    IsOptional(),
+    IsNumber(),
     __metadata("design:type", Number)
 ], SchemaDTO.prototype, "minLength", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsNumber)(),
+    Expose(),
+    IsOptional(),
+    IsNumber(),
     __metadata("design:type", Number)
 ], SchemaDTO.prototype, "maximum", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsNumber)(),
+    Expose(),
+    IsOptional(),
+    IsNumber(),
     __metadata("design:type", Number)
 ], SchemaDTO.prototype, "minimum", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsOptional(),
+    IsString(),
     __metadata("design:type", String)
 ], SchemaDTO.prototype, "pattern", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
+    Expose(),
+    IsOptional(),
     __metadata("design:type", Object)
 ], SchemaDTO.prototype, "default", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsString)({ each: true }),
+    Expose(),
+    IsOptional(),
+    IsArray(),
+    IsString({ each: true }),
     __metadata("design:type", Array)
 ], SchemaDTO.prototype, "enum", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsObject)(),
+    Expose(),
+    IsOptional(),
+    IsObject(),
     __metadata("design:type", Object)
 ], SchemaDTO.prototype, "items", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsObject)(),
+    Expose(),
+    IsOptional(),
+    IsObject(),
     __metadata("design:type", Object)
 ], SchemaDTO.prototype, "properties", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsObject)(),
+    Expose(),
+    IsOptional(),
+    IsObject(),
     __metadata("design:type", Object)
 ], SchemaDTO.prototype, "additionalProperties", void 0);
-class FormFieldDTO extends SchemaDTO {
+export class FormFieldDTO extends SchemaDTO {
     name;
     required;
     referenceName;
     referenceModel;
     children;
 }
-exports.FormFieldDTO = FormFieldDTO;
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsString(),
     __metadata("design:type", String)
 ], FormFieldDTO.prototype, "name", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsBoolean)(),
+    Expose(),
+    IsBoolean(),
     __metadata("design:type", Boolean)
 ], FormFieldDTO.prototype, "required", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsOptional(),
+    IsString(),
     __metadata("design:type", String)
 ], FormFieldDTO.prototype, "referenceName", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
+    Expose(),
+    IsOptional(),
     __metadata("design:type", Object)
 ], FormFieldDTO.prototype, "referenceModel", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, server_1.IsEntity)(() => FormFieldDTO, { each: true }),
+    Expose(),
+    IsOptional(),
+    IsEntity(() => FormFieldDTO, { each: true }),
     __metadata("design:type", Array)
 ], FormFieldDTO.prototype, "children", void 0);
-class FormFieldsDTO {
+export class FormFieldsDTO {
     type;
     fields;
 }
-exports.FormFieldsDTO = FormFieldsDTO;
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsString(),
     __metadata("design:type", String)
 ], FormFieldsDTO.prototype, "type", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, server_1.IsEntity)(() => FormFieldDTO, { each: true }),
+    Expose(),
+    IsEntity(() => FormFieldDTO, { each: true }),
     __metadata("design:type", Array)
 ], FormFieldsDTO.prototype, "fields", void 0);
-class ExtraRouteDTO {
+export class ExtraRouteDTO {
     path;
     method;
 }
-exports.ExtraRouteDTO = ExtraRouteDTO;
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsString(),
     __metadata("design:type", String)
 ], ExtraRouteDTO.prototype, "path", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsString(),
     __metadata("design:type", String)
 ], ExtraRouteDTO.prototype, "method", void 0);
-class ControllersDTO {
+export class ControllersDTO {
     name;
     routes;
 }
-exports.ControllersDTO = ControllersDTO;
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsString(),
     __metadata("design:type", String)
 ], ControllersDTO.prototype, "name", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, server_1.IsEntity)(() => ExtraRouteDTO, { each: true }),
+    Expose(),
+    IsEntity(() => ExtraRouteDTO, { each: true }),
     __metadata("design:type", Array)
 ], ControllersDTO.prototype, "routes", void 0);
-class ItemSchemaDTO {
+export class ItemSchemaDTO {
     name;
     schema;
 }
-exports.ItemSchemaDTO = ItemSchemaDTO;
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsString(),
     __metadata("design:type", String)
 ], ItemSchemaDTO.prototype, "name", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, server_1.IsEntity)(() => SchemaDTO),
+    Expose(),
+    IsEntity(() => SchemaDTO),
     __metadata("design:type", SchemaDTO)
 ], ItemSchemaDTO.prototype, "schema", void 0);
-class RouteMetadataDTO {
+export class RouteMetadataDTO {
     path;
     method;
     tags;
@@ -257,94 +247,93 @@ class RouteMetadataDTO {
     security;
     servers;
 }
-exports.RouteMetadataDTO = RouteMetadataDTO;
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsString(),
     __metadata("design:type", String)
 ], RouteMetadataDTO.prototype, "path", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsString(),
     __metadata("design:type", String)
 ], RouteMetadataDTO.prototype, "method", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsString)({ each: true }),
+    Expose(),
+    IsOptional(),
+    IsArray(),
+    IsString({ each: true }),
     __metadata("design:type", Array)
 ], RouteMetadataDTO.prototype, "tags", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsOptional(),
+    IsString(),
     __metadata("design:type", String)
 ], RouteMetadataDTO.prototype, "summary", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsOptional(),
+    IsString(),
     __metadata("design:type", String)
 ], RouteMetadataDTO.prototype, "description", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsObject)(),
+    Expose(),
+    IsOptional(),
+    IsObject(),
     __metadata("design:type", Object)
 ], RouteMetadataDTO.prototype, "externalDocs", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsOptional(),
+    IsString(),
     __metadata("design:type", String)
 ], RouteMetadataDTO.prototype, "operationId", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsObject)({ each: true }),
+    Expose(),
+    IsOptional(),
+    IsArray(),
+    IsObject({ each: true }),
     __metadata("design:type", Array)
 ], RouteMetadataDTO.prototype, "parameters", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsObject)(),
+    Expose(),
+    IsOptional(),
+    IsObject(),
     __metadata("design:type", Object)
 ], RouteMetadataDTO.prototype, "requestBody", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsObject)(),
+    Expose(),
+    IsOptional(),
+    IsObject(),
     __metadata("design:type", Object)
 ], RouteMetadataDTO.prototype, "responses", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsObject)(),
+    Expose(),
+    IsOptional(),
+    IsObject(),
     __metadata("design:type", Object)
 ], RouteMetadataDTO.prototype, "callbacks", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsBoolean)(),
+    Expose(),
+    IsOptional(),
+    IsBoolean(),
     __metadata("design:type", Boolean)
 ], RouteMetadataDTO.prototype, "deprecated", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsObject)({ each: true }),
+    Expose(),
+    IsOptional(),
+    IsArray(),
+    IsObject({ each: true }),
     __metadata("design:type", Array)
 ], RouteMetadataDTO.prototype, "security", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsObject)({ each: true }),
+    Expose(),
+    IsOptional(),
+    IsArray(),
+    IsObject({ each: true }),
     __metadata("design:type", Array)
 ], RouteMetadataDTO.prototype, "servers", void 0);
-class RouterTypeReferenceDTO {
+export class RouterTypeReferenceDTO {
     type;
     ref;
     statusCode;
@@ -352,41 +341,40 @@ class RouterTypeReferenceDTO {
     model;
     fields;
 }
-exports.RouterTypeReferenceDTO = RouterTypeReferenceDTO;
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsString(),
     __metadata("design:type", String)
 ], RouterTypeReferenceDTO.prototype, "type", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsString(),
     __metadata("design:type", String)
 ], RouterTypeReferenceDTO.prototype, "ref", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsOptional(),
+    IsString(),
     __metadata("design:type", String)
 ], RouterTypeReferenceDTO.prototype, "statusCode", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    Expose(),
+    IsOptional(),
+    IsString(),
     __metadata("design:type", String)
 ], RouterTypeReferenceDTO.prototype, "contentType", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsObject)(),
+    Expose(),
+    IsOptional(),
+    IsObject(),
     __metadata("design:type", Object)
 ], RouterTypeReferenceDTO.prototype, "model", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    (0, server_1.IsEntity)(() => FormFieldsDTO),
+    Expose(),
+    IsEntity(() => FormFieldsDTO),
     __metadata("design:type", FormFieldsDTO)
 ], RouterTypeReferenceDTO.prototype, "fields", void 0);
-function expandSchema(schema, definitions) {
+export function expandSchema(schema, definitions) {
     if (!schema)
         return schema;
     if (schema.$ref) {
@@ -407,7 +395,7 @@ function expandSchema(schema, definitions) {
  * The MetaProvider class is responsible for managing and providing metadata,
  * such as OpenAPI specifications and JSON schemas, for the API.
  */
-class MetaProvider {
+export class MetaProvider {
     logger;
     schemas;
     sourceSchemas = {};
@@ -429,7 +417,7 @@ class MetaProvider {
      * @returns The generated OpenAPI specification object.
      */
     buildSchemas() {
-        this.sourceSchemas = (0, class_validator_jsonschema_1.validationMetadatasToSchemas)({ refPointerPrefix: "#/components/schemas/" });
+        this.sourceSchemas = validationMetadatasToSchemas({ refPointerPrefix: "#/components/schemas/" });
         this.schemas = this.expandSchemas(this.sourceSchemas);
     }
     expandSchemas(schemas) {
@@ -484,7 +472,7 @@ class MetaProvider {
     }
     buildApiSpec() {
         this.buildSchemas();
-        this.sourceSpec = (0, routing_controllers_openapi_1.routingControllersToSpec)((0, routing_controllers_1.getMetadataArgsStorage)(), { routePrefix: this.context.config.apiPrefix }, {
+        this.sourceSpec = routingControllersToSpec(getMetadataArgsStorage(), { routePrefix: this.context.config.apiPrefix }, {
             components: { schemas: this.schemas },
             info: { title: "API Documentation", version: "1.0.0" }
         });
@@ -629,7 +617,7 @@ class MetaProvider {
      * @returns An array of objects containing controller names and their routes.
      */
     getControllers() {
-        const storage = (0, routing_controllers_1.getMetadataArgsStorage)();
+        const storage = getMetadataArgsStorage();
         return storage.controllers.map(controller => ({
             name: controller.target.name,
             routes: storage.actions
@@ -813,7 +801,7 @@ class MetaProvider {
         if (!schema)
             return null;
         try {
-            return (0, class_transformer_1.plainToInstance)(dtoClass, rawData);
+            return plainToInstance(dtoClass, rawData);
         }
         catch (error) {
             this.logger.error(`❌ Failed to transform data into ${dtoClass.name}:`, error);
@@ -848,7 +836,7 @@ class MetaProvider {
     sourceSchema;
     getSourceSchema() {
         if (!this.sourceSchema) {
-            this.sourceSchema = (0, class_validator_jsonschema_1.validationMetadatasToSchemas)();
+            this.sourceSchema = validationMetadatasToSchemas();
         }
         return this.sourceSchema;
     }
@@ -1049,5 +1037,4 @@ class MetaProvider {
         }
     }
 }
-exports.MetaProvider = MetaProvider;
 //# sourceMappingURL=provider.js.map

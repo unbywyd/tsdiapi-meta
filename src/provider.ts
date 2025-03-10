@@ -4,9 +4,9 @@ import { AppContext } from "@tsdiapi/server";
 import { routingControllersToSpec } from "routing-controllers-openapi";
 import { getMetadataArgsStorage } from "routing-controllers";
 import { IsArray, IsBoolean, IsNumber, IsObject, IsOptional, IsString, ValidateNested } from "class-validator";
-import { OpenAPIObject, PathItemObject, ReferenceObject, RequestBodyObject, SchemaObject } from "openapi3-ts/dist/oas30";
+import { OpenAPIObject, PathItemObject, ReferenceObject, RequestBodyObject, SchemaObject } from "openapi3-ts/oas31";
 import { IsEntity } from "@tsdiapi/server";
-import { OperationObject } from "openapi3-ts/dist/oas31";
+import { OperationObject } from "openapi3-ts/oas31";
 
 export type FormField = {
     format?: string; // Format (for numbers, dates, etc.)
@@ -432,7 +432,7 @@ export class MetaProvider {
                 components: { schemas: this.schemas },
                 info: { title: "API Documentation", version: "1.0.0" }
             }
-        );
+        ) as OpenAPIObject;
         this.apiSpec = this.expandOpenAPISpec(this.sourceSpec);
         return this.apiSpec;
     }

@@ -1,7 +1,6 @@
-import "reflect-metadata";
 import type { AppContext, AppPlugin } from "@tsdiapi/server";
-import { MetaProvider } from "./provider";
-export * from "./provider";
+import { MetaProvider } from "./provider.js";
+export * from "./provider.js";
 export type PluginOptions = {
     autoRegisterControllers?: boolean;
 };

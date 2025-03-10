@@ -1,4 +1,4 @@
-import { ItemSchemaDTO, ControllersDTO, FormFieldDTO, FormFieldsDTO, getMetaProvider, MetaProvider, RouteMetadataDTO, RouterTypeReferenceDTO, SchemaDTO } from "../index";
+import { ItemSchemaDTO, ControllersDTO, FormFieldDTO, FormFieldsDTO, getMetaProvider, MetaProvider, RouteMetadataDTO, RouterTypeReferenceDTO, SchemaDTO } from "../index.js";
 
 import {
     Get,

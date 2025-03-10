@@ -1,4 +1,4 @@
-import { ItemSchemaDTO, ControllersDTO, MetaProvider } from "../index";
+import { ItemSchemaDTO, ControllersDTO, MetaProvider } from "../index.js";
 export declare class ListStringsDTO {
     list: string[];
 }
@@ -18,13 +18,13 @@ export declare class MetaController {
     getApiSourceSpec(): Promise<{
         source: Record<string, any>;
     }>;
-    getAllTypesFromRoute(data: RouteRequestParamsDTO): Promise<import("../provider").RouterTypeReference[]>;
+    getAllTypesFromRoute(data: RouteRequestParamsDTO): Promise<import("../provider.js").RouterTypeReference[]>;
     getInputTypesFromRoute(data: RouteRequestParamsDTO): Promise<{}>;
-    getOutputTypesFromRoute(data: RouteRequestParamsDTO): Promise<import("../provider").RouterTypeReference[]>;
-    getAllRoutes(): Promise<import("../provider").RouteMetadata[]>;
+    getOutputTypesFromRoute(data: RouteRequestParamsDTO): Promise<import("../provider.js").RouterTypeReference[]>;
+    getAllRoutes(): Promise<import("../provider.js").RouteMetadata[]>;
     getControllers(): Promise<ControllersDTO[]>;
-    getRoute(data: RouteRequestParamsDTO): Promise<import("../provider").RouteMetadata | import("../provider").RouteMetadata[]>;
-    getRouteSource(data: RouteRequestParamsDTO): Promise<import("../provider").RouteMetadata | import("../provider").RouteMetadata[]>;
+    getRoute(data: RouteRequestParamsDTO): Promise<import("../provider.js").RouteMetadata | import("../provider.js").RouteMetadata[]>;
+    getRouteSource(data: RouteRequestParamsDTO): Promise<import("../provider.js").RouteMetadata | import("../provider.js").RouteMetadata[]>;
     getSchemaByName(name: string): Promise<any>;
     listAvailableDTOs(): Promise<{
         list: string[];
@@ -33,8 +33,8 @@ export declare class MetaController {
     getSourceSchema(): Promise<{
         source: Record<string, any>;
     }>;
-    getFormFields(name: string): Promise<import("../provider").FormField[]>;
-    getResponseRouterFields(data: RouteRequestParamsDTO): Promise<import("../provider").FormFields>;
-    getRequestRouterFields(data: RouteRequestParamsDTO): Promise<import("../provider").FormFields>;
+    getFormFields(name: string): Promise<import("../provider.js").FormField[]>;
+    getResponseRouterFields(data: RouteRequestParamsDTO): Promise<import("../provider.js").FormFields>;
+    getRequestRouterFields(data: RouteRequestParamsDTO): Promise<import("../provider.js").FormFields>;
 }
 //# sourceMappingURL=meta.controller.d.ts.map
