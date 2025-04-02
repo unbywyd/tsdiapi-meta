@@ -1,12 +1,8 @@
-import path from "path";
-import type { AppContext, AppPlugin } from "@tsdiapi/server";
+import type { AppContext, AppPlugin, Constructor } from "@tsdiapi/server";
 import { MetaProvider } from "./provider.js";
 export * from "./provider.js";
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import registerMetaRoutes from "./controllers/meta.controller.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 let metaProvider: MetaProvider | null = null;
 
 export type PluginOptions = {
@@ -18,30 +14,33 @@ export class MetaPlugin implements AppPlugin {
     context: AppContext;
     provider: MetaProvider;
     config: PluginOptions;
-    globControllersPath: string | null = null;
+    services?: Constructor<unknown>[];
     constructor(config?: PluginOptions) {
         this.config = { ...config };
         this.provider = new MetaProvider();
     }
 
     async onInit(ctx: AppContext) {
+        const logger = ctx.fastify.log;
         if (metaProvider) {
-            ctx.logger.warn("🚨 META Plugin is already initialized. Skipping re-initialization.");
+            logger.warn("🚨 META Plugin is already initialized. Skipping re-initialization.");
             return;
         }
         this.context = ctx;
-        const appConfig = this.context.config.appConfig || {};
-        this.config.autoRegisterControllers = appConfig?.autoRegisterControllers || appConfig['META_AUTO_REGISTER_CONTROLLERS'] || this.config.autoRegisterControllers;
-        if (this.config.autoRegisterControllers) {
-            this.globControllersPath = path.join(__dirname, '../') + path.normalize("output/controllers/**/*.controller{.ts,.js}");
-        }
+        const projectConfig = ctx.projectConfig;
+        this.config.autoRegisterControllers = projectConfig.get('META_AUTO_REGISTER_CONTROLLERS', this.config.autoRegisterControllers) as boolean;
+
         try {
             this.provider.init(ctx);
             metaProvider = this.provider;
-
-            ctx.logger.info("✅ META Plugin initialized.");
+            logger.info("✅ META Plugin initialized.");
         } catch (error) {
-            ctx.logger.error("❌ META Plugin initialization failed.", error);
+            logger.error("❌ META Plugin initialization failed.", error);
+        }
+    }
+    async preReady() {
+        if (this.config.autoRegisterControllers) {
+            await registerMetaRoutes(this.context);
         }
     }
 }

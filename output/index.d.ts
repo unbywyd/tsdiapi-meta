@@ -1,4 +1,4 @@
-import type { AppContext, AppPlugin } from "@tsdiapi/server";
+import type { AppContext, AppPlugin, Constructor } from "@tsdiapi/server";
 import { MetaProvider } from "./provider.js";
 export * from "./provider.js";
 export type PluginOptions = {
@@ -9,9 +9,10 @@ export declare class MetaPlugin implements AppPlugin {
     context: AppContext;
     provider: MetaProvider;
     config: PluginOptions;
-    globControllersPath: string | null;
+    services?: Constructor<unknown>[];
     constructor(config?: PluginOptions);
     onInit(ctx: AppContext): Promise<void>;
+    preReady(): Promise<void>;
 }
 export declare function getMetaProvider(): MetaProvider;
 export { MetaProvider };

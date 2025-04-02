@@ -1,39 +1,38 @@
-import path from "path";
 import { MetaProvider } from "./provider.js";
 export * from "./provider.js";
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import registerMetaRoutes from "./controllers/meta.controller.js";
 let metaProvider = null;
 export class MetaPlugin {
     name = "@tsdiapi/meta";
     context;
     provider;
     config;
-    globControllersPath = null;
+    services;
     constructor(config) {
         this.config = { ...config };
         this.provider = new MetaProvider();
     }
     async onInit(ctx) {
+        const logger = ctx.fastify.log;
         if (metaProvider) {
-            ctx.logger.warn("🚨 META Plugin is already initialized. Skipping re-initialization.");
+            logger.warn("🚨 META Plugin is already initialized. Skipping re-initialization.");
             return;
         }
         this.context = ctx;
-        const appConfig = this.context.config.appConfig || {};
-        this.config.autoRegisterControllers = appConfig?.autoRegisterControllers || appConfig['META_AUTO_REGISTER_CONTROLLERS'] || this.config.autoRegisterControllers;
-        if (this.config.autoRegisterControllers) {
-            this.globControllersPath = path.join(__dirname, '../') + path.normalize("output/controllers/**/*.controller{.ts,.js}");
-        }
+        const projectConfig = ctx.projectConfig;
+        this.config.autoRegisterControllers = projectConfig.get('META_AUTO_REGISTER_CONTROLLERS', this.config.autoRegisterControllers);
         try {
             this.provider.init(ctx);
             metaProvider = this.provider;
-            ctx.logger.info("✅ META Plugin initialized.");
+            logger.info("✅ META Plugin initialized.");
         }
         catch (error) {
-            ctx.logger.error("❌ META Plugin initialization failed.", error);
+            logger.error("❌ META Plugin initialization failed.", error);
+        }
+    }
+    async preReady() {
+        if (this.config.autoRegisterControllers) {
+            await registerMetaRoutes(this.context);
         }
     }
 }
