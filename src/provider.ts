@@ -132,13 +132,6 @@ export class MetaProvider {
         this.fastifyInstance = context.fastify;
     }
 
-    private buildSchemas(): void {
-        if (!this.fastifyInstance) {
-            this.logger.warn("Fastify instance not available");
-            return;
-        }
-    }
-
     async generateFieldsFromSchema(schema: unknown): Promise<FormField[]> {
         if ("object" !== typeof schema) {
             this.logger.warn("Schema is not an object");
@@ -153,8 +146,6 @@ export class MetaProvider {
         if (!this.fastifyInstance) {
             throw new Error("Fastify instance not available");
         }
-
-        this.buildSchemas();
         this.apiSpec = this.fastifyInstance.swagger() as OpenAPIObject;
         return this.apiSpec;
     }

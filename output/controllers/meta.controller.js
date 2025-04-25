@@ -4,8 +4,51 @@ const RouteRequestParamsSchema = Type.Object({
     route: Type.String(),
     method: Type.Optional(Type.String()),
 });
-export default async function registerMetaRoutes({ useRoute }) {
+export default async function registerMetaRoutes({ useRoute, fastify }) {
+    let schemas = null;
+    const getSchemas = () => {
+        if (!schemas) {
+            schemas = fastify.getSchemas();
+        }
+        return schemas;
+    };
     const meta = getMetaProvider();
+    useRoute("meta")
+        .get("/swagger/schemas-list")
+        .summary("List available schemas for swagger")
+        .code(200, Type.Array(Type.String()))
+        .handler(() => {
+        const list = Object.keys(getSchemas());
+        return { status: 200, data: list };
+    })
+        .build();
+    useRoute("meta")
+        .get("/swagger/schemas/:name")
+        .summary("Get schema by name for swagger")
+        .params(Type.Object({ name: Type.String() }))
+        .code(200, Type.Any())
+        .handler(async (req) => {
+        const schema = getSchemas()[req.params.name];
+        return { status: 200, data: schema };
+    })
+        .build();
+    useRoute("meta")
+        .get("/swagger/schemas/:name/fields")
+        .summary('Get fields by schemas')
+        .params(Type.Object({ name: Type.String() }))
+        .code(200, Type.Array(FormFieldDTO))
+        .code(400, Type.Object({
+        message: Type.String()
+    }))
+        .handler(async (req) => {
+        const schema = getSchemas()[req.params.name];
+        if (!schema) {
+            return { status: 400, data: { message: 'Schema not found' } };
+        }
+        const data = await meta.generateFieldsFromSchema(schema);
+        return { status: 200, data: data };
+    })
+        .build();
     useRoute("meta")
         .get("/api-spec")
         .summary("Get API spec")

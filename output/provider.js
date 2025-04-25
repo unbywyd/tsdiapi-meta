@@ -92,12 +92,6 @@ export class MetaProvider {
         this.logger = context.fastify.log;
         this.fastifyInstance = context.fastify;
     }
-    buildSchemas() {
-        if (!this.fastifyInstance) {
-            this.logger.warn("Fastify instance not available");
-            return;
-        }
-    }
     async generateFieldsFromSchema(schema) {
         if ("object" !== typeof schema) {
             this.logger.warn("Schema is not an object");
@@ -111,7 +105,6 @@ export class MetaProvider {
         if (!this.fastifyInstance) {
             throw new Error("Fastify instance not available");
         }
-        this.buildSchemas();
         this.apiSpec = this.fastifyInstance.swagger();
         return this.apiSpec;
     }

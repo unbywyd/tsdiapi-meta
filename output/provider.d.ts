@@ -195,7 +195,6 @@ export declare class MetaProvider {
     context: AppContext;
     constructor();
     init(context: AppContext): void;
-    private buildSchemas;
     generateFieldsFromSchema(schema: unknown): Promise<FormField[]>;
     buildApiSpec(): Promise<OpenAPIObject>;
     getApiSpec(): Promise<OpenAPIObject>;
