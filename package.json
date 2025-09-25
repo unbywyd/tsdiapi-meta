@@ -1,7 +1,7 @@
 {
   "name": "@tsdiapi/meta",
   "description": "A TSDIAPI plugin to extend API functionality with meta.",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "main": "output/index.js",
   "type": "module",
   "types": "output/index.d.ts",
@@ -36,7 +36,7 @@
     "openapi3-ts": "^4.4.0"
   },
   "devDependencies": {
-    "@tsdiapi/server": "^0.2.11",
+    "@tsdiapi/server": "^0.3.0",
     "@types/node": "^22.13.5",
     "typescript": "^5.7.3"
   }
